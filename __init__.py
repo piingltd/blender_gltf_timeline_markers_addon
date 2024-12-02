@@ -1,18 +1,18 @@
 import bpy
 import io_scene_gltf2.io.com.gltf2_io
-from io_scene_gltf2.blender.exp.gltf2_blender_gather_cameras import gather_camera
-from io_scene_gltf2.blender.exp import gltf2_blender_get
-from io_scene_gltf2.blender.exp import gltf2_blender_gather_texture_info
-from io_scene_gltf2.blender.exp import gltf2_blender_search_node_tree
+# from io_scene_gltf2.blender.exp.gltf2_blender_gather_cameras import gather_camera
+# from io_scene_gltf2.blender.exp import gltf2_blender_get
+# from io_scene_gltf2.blender.exp import gltf2_blender_gather_texture_info
+# from io_scene_gltf2.blender.exp import gltf2_blender_search_node_tree
 
 bl_info = {
     "name": "Timeline markers Extension",
     "extension_name": "WEBGI_animation_markers",
     "category": "GLTF Exporter",
     "version": (1, 0, 0),
-    "blender": (2, 92, 0),
+    "blender": (3, 6, 0),
     'location': 'File > Export > glTF 2.0',
-    'description': 'Extension to export timeline markers and cameras in gltf.',
+    'description': 'Extension to export timeline markers and cameras in gltf. Modded by Jamie White',
     'tracker_url': '',  # Replace with your issue tracker
     'isDraft': False,
     'developer': "Palash Bansal",
@@ -121,6 +121,7 @@ class glTF2ExportUserExtension:
             if marker.camera is not None:
                 camIndex = self.cameras[marker.camera.data.name]
                 if camIndex is not None:
+                    markerData['camName'] = marker.camera.name
                     markerData['camera'] = camIndex
             extMarkers.append(markerData)
 
